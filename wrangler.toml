@@ -9,7 +9,7 @@ crons = [ ]
 
 [vars]
 SENTRY_DSN = "https://640aa09911fd4e7ab971b955bd8ef5d0@o1307325.ingest.sentry.io/4504277937618944"
+SUPABASE_ENDPOINT = "https://uxcjzomklsrmofrcvnwh.supabase.co"
 
 # The necessary secrets are:
-# SUPABASE_ENDPOINT
 # SUPABASE_PUBLIC_ANON_KEY
