@@ -31,7 +31,7 @@ async function getEventData(request) {
 
   return {
     ip: request.headers.get('CF-Connecting-IP'),
-    code: body.ref?.toLowerCase?.(),
+    code: body.ref?.toString?.().toLowerCase?.(),
     type: body.type,
     destination: body.destination,
     userAgent: userAgent,
