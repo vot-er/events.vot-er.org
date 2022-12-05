@@ -1,8 +1,16 @@
-import { UserAgent } from 'express-useragent'
-import { createClient } from '@supabase/supabase-js'
+import { UserAgent } from 'express-useragent';
+import { createClient } from '@supabase/supabase-js';
+import Toucan from 'toucan-js';
 
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request, env, context) {
+    const sentry = new Toucan({
+      dsn: env.SENTRY_DSN,
+      context,
+      request,
+      allowedHeaders: ['user-agent'],
+      allowedSearchParams: /(.*)/,
+    });
     try {
       const supabase = createClient(env.SUPABASE_ENDPOINT, env.SUPABASE_PUBLIC_ANON_KEY);
       const eventData = await getEventData(request);
@@ -10,7 +18,8 @@ export default {
       await createEvent(kitData, supabase);
       return new Response(undefined, { status: 200 });
     } catch(error) {
-      return new Response(error, { status: 500 });
+      sentry.captureException(error);
+      return new Response('Sorry, there was an error.', { status: 500 });
     }
   }
 }

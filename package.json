@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.1.1",
-    "express-useragent": "^1.0.15"
+    "express-useragent": "^1.0.15",
+    "toucan-js": "^2.7.0"
   }
 }
