@@ -12,8 +12,6 @@ export default {
       allowedSearchParams: /(.*)/,
     });
     try {
-      if (request.method !== 'POST') { return Response.redirect('https://vot-er.org/'); }
-
       const supabase = createClient(env.SUPABASE_ENDPOINT, env.SUPABASE_PUBLIC_ANON_KEY);
       const eventData = await getEventData(request);
       const kitData = await getKitData(eventData, supabase);
